@@ -34,7 +34,17 @@ function App() {
         "Loading..." :
         query.isError ?
           query.error :
-          query.data?.map(item => <div key={item.id}>{item.title}</div>)}
+          query.data?.map((item, index) =>
+            <div key={item.id} className='flex flex-col text-sm'>
+              <div className='flex gap-2'>
+                <span className={index < 9 ? "ml-2" : ""}>{(index + 1) + '.'}</span>
+                <span>{item.title}</span>
+                <span>{`(${item.domain})`}</span>
+              </div>
+              <div className='ml-7 text-xs'>
+                {item.points + ' points'} by <span>{item.user}</span> <span>{item.time_ago}</span> | <span>{item.comments_count + " comments"}</span>
+              </div>
+            </div>)}
     </>
   )
 }
