@@ -37,14 +37,16 @@ function App() {
           query.data?.map((item, index) =>
             <div key={item.id} className='flex flex-col text-sm'>
               <div className='flex gap-2'>
-                <span className={index < 9 ? "ml-2" : ""}>{(index + 1) + '.'}</span>
+                <span className='w-5 text-right'>{(index + 1) + '.'}</span>
                 <span>{item.title}</span>
                 <span>{`(${item.domain})`}</span>
               </div>
               <div className='ml-7 text-xs'>
                 {item.points + ' points'} by <span>{item.user}</span> <span>{item.time_ago}</span> | <span>{item.comments_count + " comments"}</span>
               </div>
-            </div>)}
+            </div>)
+      }
+      <div className='ml-7 mt-3 text-sm'>More</div>
     </>
   )
 }
