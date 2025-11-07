@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import './App.css'
 
 interface Story {
   id: number;
@@ -16,7 +15,6 @@ interface Story {
 }
 
 function App() {
-  const [count, setCount] = useState(0)
   const [page, setPage] = useState(1)
   
   const fetchStories = (page: number): Promise<Story[]> => fetch('https://api.hackerwebapp.com/news?page=' + page).then(response => response.json())
