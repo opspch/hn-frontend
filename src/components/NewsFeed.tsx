@@ -14,7 +14,7 @@ interface Story {
   domain: string;
 }
 
-function App() {
+function NewsFeed() {
   const [page, setPage] = useState(1)
   
   const fetchStories = (page: number): Promise<Story[]> => fetch('https://api.hackerwebapp.com/news?page=' + page).then(response => response.json())
@@ -49,4 +49,4 @@ function App() {
   )
 }
 
-export default App
+export default NewsFeed
