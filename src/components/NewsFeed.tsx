@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { Link, useSearch } from '@tanstack/react-router'
 
 interface Story {
   id: number;
@@ -15,7 +15,8 @@ interface Story {
 }
 
 function NewsFeed() {
-  const [page, setPage] = useState(1)
+  const search = useSearch({ strict: false }) as { page?: number }
+  const page = search.page ?? 1
   
   const fetchStories = (page: number): Promise<Story[]> => fetch('https://api.hackerwebapp.com/news?page=' + page).then(response => response.json())
   const query = useQuery({
@@ -35,7 +36,7 @@ function NewsFeed() {
           query.data?.map((item, index) =>
             <div key={item.id} className='flex flex-col text-sm'>
               <div className='flex gap-2'>
-                <span className='w-5 text-right'>{(index + 1) + '.'}</span>
+                <span className='w-5 text-right'>{((page - 1) * 30 + index + 1) + '.'}</span>
                 <span>{item.title}</span>
                 <span>{`(${item.domain})`}</span>
               </div>
@@ -44,7 +45,11 @@ function NewsFeed() {
               </div>
             </div>)
       }
-      <div className='ml-7 mt-3 text-sm'>More</div>
+      <div className='ml-7 mt-3 text-sm'>
+        <Link to="." search={{ page: page + 1 }}>
+          More
+        </Link>
+      </div>
     </>
   )
 }
