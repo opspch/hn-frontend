@@ -16,7 +16,7 @@ const RootLayout = () => (
     </div>
     <hr />
     <Outlet />
-    <TanStackRouterDevtools initialIsOpen={false} />
+    <TanStackRouterDevtools initialIsOpen={false} position="bottom-right" />
   </>
 )
 
