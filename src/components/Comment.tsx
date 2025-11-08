@@ -26,7 +26,7 @@ function Comment({ data } : CommentProps) {
         <div className={collapsed ? "hidden" : "text-xs"} dangerouslySetInnerHTML={{__html: data.content }}></div>
       </div>
       <div className={collapsed ? "hidden" : "flex flex-col gap-2 ml-7"}>
-        {data.comments.map(comment => <Comment data={comment} ></Comment>)}
+        {data.comments.map(comment => <Comment data={comment} />)}
       </div>
     </div>
   )

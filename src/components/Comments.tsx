@@ -64,7 +64,7 @@ function Comments() {
             </div>
           </div>
           <div className='flex flex-col gap-2'>
-            {item.comments.map(comment => <Comment data={comment} ></Comment>)}
+            {item.comments.map(comment => <Comment data={comment} />)}
           </div>
         </div>;
       case "comment":
@@ -76,7 +76,7 @@ function Comments() {
             <div className='text-xs' dangerouslySetInnerHTML={{__html: item.content }}></div>
           </div>
           <div className='flex flex-col gap-2'>
-            {item.comments.map(comment => <Comment data={comment} ></Comment>)}
+            {item.comments.map(comment => <Comment data={comment} />)}
           </div>
         </div>
     }
