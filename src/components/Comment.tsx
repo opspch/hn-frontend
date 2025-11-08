@@ -15,13 +15,22 @@ interface CommentProps {
   data: CommentData
 }
 
+// count all children and the root comment recursively
+function countComments(item: CommentData): number {
+  let result = 1;
+  for (const comment of item.comments) {
+    result += countComments(comment)
+  }  
+  return result;
+}
+
 function Comment({ data } : CommentProps) {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <div key={data.id} className='flex flex-col gap-2 text-sm'>
       <div>
         <div className='flex gap-2'>
-          <span className='whitespace-pre-wrap'>{data.user} <Link to='/item' search={{id: data.id}}>{data.time_ago}</Link> <button onClick={() => setCollapsed(!collapsed)}>{collapsed ? '[+]': '[-]'}</button></span>
+          <span className='whitespace-pre-wrap'>{data.user} <Link to='/item' search={{id: data.id}}>{data.time_ago}</Link> <a onClick={() => setCollapsed(!collapsed)}>{collapsed ? `[${countComments(data)} more]`: '[-]'}</a></span>
         </div>
         <div className={collapsed ? "hidden" : "text-xs"} dangerouslySetInnerHTML={{__html: data.content }}></div>
       </div>
