@@ -18,7 +18,15 @@ function NewsFeed() {
   const search = useSearch({ strict: false }) as { page?: number }
   const page = search.page ?? 1
   
-  const fetchStories = (page: number): Promise<Story[]> => fetch('https://api.hackerwebapp.com/news?page=' + page).then(response => response.json())
+  const fetchStories = (page: number): Promise<Story[]> => {
+    return fetch('https://api.hackerwebapp.com/news?page=' + page)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
+  }
   const query = useQuery({
     queryKey: ['stories', page],
     queryFn: () => fetchStories(page),
