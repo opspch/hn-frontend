@@ -48,7 +48,7 @@ function NewsFeed() {
                 <span className='whitespace-pre-wrap'>{item.title} {`(${item.domain})`}</span>
               </div>
               <div className='ml-7 text-xs'>
-                {item.points + ' points'} by <span>{item.user}</span> <span>{item.time_ago}</span> | <span>{item.comments_count + " comments"}</span>
+                {item.points + ' points'} by <span>{item.user}</span> <Link to='/item' search={{ id: item.id }} className='hover:underline'>{item.time_ago}</Link> | <Link to='/item' search={{ id: item.id }} className='hover:underline'>{item.comments_count + " comments"}</Link>
               </div>
             </div>)
       }
