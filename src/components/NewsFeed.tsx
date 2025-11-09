@@ -35,7 +35,7 @@ function NewsFeed() {
 
 
   return (
-    <div className='my-2'>
+    <div className='flex flex-col gap-1 my-2'>
       {query.isFetching ?
         "Loading..." :
         query.isError ?
