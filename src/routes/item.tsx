@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Comments from '../components/Comments'
+import { itemQueryOptions } from '../queries'
 
 type ItemSearchParams = {
   id: number,
@@ -13,6 +14,11 @@ export const Route = createFileRoute('/item')({
       id: Number(search.id),
       page: Number(search?.page ?? 1),
     }
+  },
+  loader: async ({ context, location }) => {
+    // Not sure why we are getting type errors here, it has something to do with the router module declaration
+    await context.queryClient.ensureQueryData(itemQueryOptions(location.search.id))
+
   },
   component: Item,
 })

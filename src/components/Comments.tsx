@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearch } from '@tanstack/react-router'
 import Comment from './Comment';
 import { type CommentData } from './Comment';
+import { itemQueryOptions } from '../queries';
 
-interface ArticleItem {
+export interface ArticleItem {
   id: number;
   title: string;
   points: number;
@@ -36,20 +37,8 @@ function Comments() {
   //
   // TODO figure out whether the comments are paginated
   // fetch(`https://api.hackerwebapp.com/item/${id}?page=${page}`)
-  // 
-  const fetchItem = (id: number): Promise<ArticleItem | CommentItem> => {
-    return fetch(`https://api.hackerwebapp.com/item/${id}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
-  }
-  const query = useQuery({
-    queryKey: ['comments', id],
-    queryFn: () => fetchItem(id),
-  })
+  //
+  const query = useQuery(itemQueryOptions(id))
 
   const renderItem = (item: ArticleItem | CommentItem) => {
     switch (item.type) {

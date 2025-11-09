@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link, useSearch } from '@tanstack/react-router'
 
-interface Story {
+export interface Story {
   id: number;
   title: string;
   points: number;
