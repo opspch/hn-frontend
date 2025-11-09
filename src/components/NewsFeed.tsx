@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link, useSearch } from '@tanstack/react-router'
+import { storiesQueryOptions } from '../queries';
 
 export interface Story {
   id: number;
@@ -18,21 +19,7 @@ function NewsFeed() {
   const search = useSearch({ strict: false }) as { page?: number }
   const page = search.page ?? 1
   
-  const fetchStories = (page: number): Promise<Story[]> => {
-    return fetch('https://api.hackerwebapp.com/news?page=' + page)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
-  }
-  const query = useQuery({
-    queryKey: ['stories', page],
-    queryFn: () => fetchStories(page),
-  })  
-  console.log(query);
-
+  const query = useQuery(storiesQueryOptions(page));
 
   return (
     <div className='flex flex-col gap-1 my-2'>
