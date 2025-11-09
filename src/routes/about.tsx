@@ -5,5 +5,9 @@ export const Route = createFileRoute('/about')({
 })
 
 function About() {
-  return <div className="p-2">Hello from About!</div>
+  return <div className="p-2">
+    This is built with React, @tanstack/react-router and @tanstack/react-query. I started from the vite react-ts template.
+    The Hacker News API I used is here: <a className='hover:underline visited:text-gray' href='https://github.com/cheeaun/node-hnapi'>https://github.com/cheeaun/node-hnapi</a>.
+    The source code is here: <a className='hover:underline visited:text-gray' href=''>https://github.com/</a>
+  </div>
 }
