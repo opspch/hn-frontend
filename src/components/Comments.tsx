@@ -43,12 +43,12 @@ function Comments() {
   const renderItem = (item: ArticleItem | CommentItem) => {
     switch (item.type) {
       case "link":
-        return <div key={item.id} className='flex flex-col gap-6 ml-7 text-sm'>
+        return <div className='flex flex-col gap-6 ml-7'>
           <div>
             <div className='flex gap-2'>
-              <span className='whitespace-pre-wrap'><a href={item.url}>{item.title}</a> {`(${item.domain})`}</span>
+              <span className='whitespace-pre-wrap text-base'><a className='visited:text-gray' href={item.url}>{item.title}</a> <span className='text-gray'>{`(${item.domain})`}</span></span>
             </div>
-            <div className='text-xs'>
+            <div className='text-xs text-gray'>
               {item.points + ' points'} by <span>{item.user}</span> <span>{item.time_ago}</span> | <span>{item.comments_count + " comments"}</span>
             </div>
           </div>
@@ -57,12 +57,12 @@ function Comments() {
           </div>
         </div>;
       case "comment":
-        return <div key={item.id} className='flex flex-col gap-6 ml-7 text-sm'>
+        return <div className='flex flex-col gap-6 ml-7'>
           <div className='flex flex-col gap-2'>
             <div className='flex gap-2'>
-              <span className='whitespace-pre-wrap'><span>{item.user}</span> <span>{item.time_ago}</span></span>
+              <span className='whitespace-pre-wrap text-xs text-gray'><span>{item.user}</span> <span>{item.time_ago}</span></span>
             </div>
-            <div className='text-xs' dangerouslySetInnerHTML={{__html: item.content }}></div>
+            <div className='text-sm' dangerouslySetInnerHTML={{__html: item.content }}></div>
           </div>
           <div className='flex flex-col gap-2'>
             {item.comments.map(comment => <Comment data={comment} />)}
@@ -72,11 +72,11 @@ function Comments() {
   }
 
   return (
-    <>
+    <div className='pt-3 pb-6'>
       {query.isFetching ?
         "Loading..." :
         query.isError ?
-          query.error :
+          query.error.message :
           !query.data ?
           "" :
           renderItem(query.data)
@@ -86,7 +86,7 @@ function Comments() {
           More
         </Link>
       </div> */}
-    </>
+    </div>
   )
 }
 

@@ -35,29 +35,28 @@ function NewsFeed() {
 
 
   return (
-    <>
-      <div className='text-xl'>Hello world</div>
+    <div className='my-2'>
       {query.isFetching ?
         "Loading..." :
         query.isError ?
-          query.error :
+          query.error.message :
           query.data?.map((item, index) =>
-            <div key={item.id} className='flex flex-col text-sm'>
+            <div key={item.id} className='flex flex-col text-base'>
               <div className='flex gap-2'>
-                <span className='w-5 text-right'>{((page - 1) * 30 + index + 1) + '.'}</span>
-                <span className='whitespace-pre-wrap'><a href={item.url}>{item.title}</a> {`(${item.domain})`}</span>
+                <span className='w-5 text-right text-gray'>{((page - 1) * 30 + index + 1) + '.'}</span>
+                <span className='whitespace-pre-wrap'><a className='visited:text-gray' href={item.url}>{item.title}</a> <span className='text-sm text-gray'>{`(${item.domain})`}</span></span>
               </div>
-              <div className='ml-7 text-xs'>
+              <div className='ml-7 text-xs text-gray'>
                 {item.points + ' points'} by <span>{item.user}</span> <Link to='/item' search={{ id: item.id }} className='hover:underline'>{item.time_ago}</Link> | <Link to='/item' search={{ id: item.id }} className='hover:underline'>{item.comments_count + " comments"}</Link>
               </div>
             </div>)
       }
-      <div className='ml-7 mt-3 text-sm'>
-        <Link to="." search={{ page: page + 1 }}>
+      <div className='ml-7 mt-5 mb-3 text-base'>
+        <Link className='visited:text-gray' to="." search={{ page: page + 1 }}>
           More
         </Link>
       </div>
-    </>
+    </div>
   )
 }
 
