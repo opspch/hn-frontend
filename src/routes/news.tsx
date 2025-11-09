@@ -23,9 +23,6 @@ export const Route = createFileRoute('/news')({
 
 function News() {
   return (
-    <div className="p-2">
-      <h3>Welcome to News!</h3>
-      <NewsFeed />
-    </div>
+    <NewsFeed />
   )
 }

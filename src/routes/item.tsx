@@ -25,9 +25,6 @@ export const Route = createFileRoute('/item')({
 
 function Item() {
   return (
-    <div className="p-2">
-      <h3>Welcome to Comments!</h3>
-      <Comments />
-    </div>
+    <Comments />
   )
 }
