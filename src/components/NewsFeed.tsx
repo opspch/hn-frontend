@@ -44,7 +44,7 @@ function NewsFeed() {
             <div key={item.id} className='flex flex-col text-base'>
               <div className='flex gap-2'>
                 <span className='w-5 text-right text-gray'>{((page - 1) * 30 + index + 1) + '.'}</span>
-                <span className='whitespace-pre-wrap'><a className='visited:text-gray' href={item.url}>{item.title}</a> <span className='text-sm text-gray'>{`(${item.domain})`}</span></span>
+                <span className='w-fit whitespace-pre-wrap'><a className='visited:text-gray' href={item.url}>{item.title}</a> <span className='text-sm text-gray'>{`(${item.domain})`}</span></span>
               </div>
               <div className='ml-7 text-xs text-gray'>
                 {item.points + ' points'} by <span>{item.user}</span> <Link to='/item' search={{ id: item.id }} className='hover:underline'>{item.time_ago}</Link> | <Link to='/item' search={{ id: item.id }} className='hover:underline'>{item.comments_count + " comments"}</Link>
