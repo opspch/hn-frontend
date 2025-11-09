@@ -15,3 +15,8 @@
 div.post a {
     text-decoration-line: underline;
 }
+/* wrap code blocks and give them padding */
+div.post pre {
+    white-space: pre-wrap;
+    padding: calc(var(--spacing) * 2);
+}
