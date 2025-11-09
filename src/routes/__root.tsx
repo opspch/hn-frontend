@@ -1,6 +1,6 @@
 import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import hnLogo from '../assets/y18.svg';
+import hnLogo from '../../y18.svg';
 
 const RootLayout = () => (
   <div className='m-2 bg-beige border-b-2 border-orange'>
