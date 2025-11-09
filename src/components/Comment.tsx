@@ -31,7 +31,7 @@ function Comment({ data } : CommentProps) {
       <div className='flex gap-2'>
         <span className='whitespace-pre-wrap text-xs text-gray'>{data.user} <Link to='/item' search={{id: data.id}}>{data.time_ago}</Link> <a onClick={() => setCollapsed(!collapsed)}>{collapsed ? `[${countComments(data)} more]`: '[-]'}</a></span>
       </div>
-      <div className={collapsed ? "hidden" : "text-sm"} dangerouslySetInnerHTML={{__html: data.content }}></div>
+      <div className={collapsed ? "hidden" : "post text-sm"} dangerouslySetInnerHTML={{__html: data.content }}></div>
       <div className={collapsed ? "hidden" : "flex flex-col gap-2 ml-7"}>
         {data.comments.map(comment => <Comment data={comment} />)}
       </div>

@@ -10,3 +10,8 @@
     --text-sm: 12px;
     --text-base: 13.3333px;
 }
+
+/* underline links in posts  */
+div.post a {
+    text-decoration-line: underline;
+}
