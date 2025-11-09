@@ -16,7 +16,7 @@ export const Route = createFileRoute('/item')({
     }
   },
   loader: async ({ context, location }) => {
-    // Not sure why we are getting type errors here, it has something to do with the router module declaration
+    // @ts-expect-error Not sure why we are getting type errors here, it has something to do with the router module declaration
     await context.queryClient.ensureQueryData(itemQueryOptions(location.search.id))
 
   },
