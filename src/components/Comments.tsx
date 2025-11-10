@@ -62,6 +62,7 @@ function Comments() {
             <div className='flex gap-2'>
               <span className='whitespace-pre-wrap text-xs text-gray'><span>{item.user}</span> <span>{item.time_ago}</span></span>
             </div>
+            {/* biome-ignore lint: we need this to preserve post formatting, because HN posts can contain markup */}
             <div className='text-sm' dangerouslySetInnerHTML={{__html: item.content }}></div>
           </div>
           <div className='flex flex-col gap-2'>

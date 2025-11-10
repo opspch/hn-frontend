@@ -19,6 +19,7 @@
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.4",
     "@eslint/js": "^9.36.0",
     "@tanstack/router-plugin": "^1.134.14",
     "@types/node": "^24.6.0",
