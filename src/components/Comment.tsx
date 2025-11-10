@@ -27,13 +27,13 @@ function countComments(item: CommentData): number {
 function Comment({ data } : CommentProps) {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <div key={data.id} className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2'>
       <div className='flex gap-2'>
         <span className='whitespace-pre-wrap text-xs text-gray'>{data.user} <Link to='/item' search={{id: data.id}}>{data.time_ago}</Link> <a onClick={() => setCollapsed(!collapsed)}>{collapsed ? `[${countComments(data)} more]`: '[-]'}</a></span>
       </div>
       <div className={collapsed ? "hidden" : "post text-sm"} dangerouslySetInnerHTML={{__html: data.content }}></div>
       <div className={collapsed ? "hidden" : "flex flex-col gap-2 ml-7"}>
-        {data.comments.map(comment => <Comment data={comment} />)}
+        {data.comments.map(comment => <Comment key={comment.id} data={comment} />)}
       </div>
     </div>
   )
