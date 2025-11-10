@@ -16,9 +16,9 @@ export interface Story {
 }
 
 function NewsFeed() {
-  const search = useSearch({ strict: false }) as { page?: number }
+  const search = useSearch({ from: '/news' })
   const page = search.page ?? 1
-  
+
   const query = useQuery(storiesQueryOptions(page));
 
   return (

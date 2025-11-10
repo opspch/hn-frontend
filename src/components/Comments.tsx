@@ -31,7 +31,7 @@ export interface CommentItem {
 }
 
 function Comments() {
-  const search = useSearch({ strict: false }) as { id: number, page?: number}
+  const search = useSearch({ from: '/item' })
   const id = search.id
   // const page = search.page ?? 1
   //
