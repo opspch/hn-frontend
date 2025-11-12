@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from '@tanstack/react-router'
+import DOMPurify from 'dompurify';
 
 export interface CommentData {
   id: number;
@@ -32,8 +33,8 @@ function Comment({ data } : CommentProps) {
         {/* biome-ignore lint: anchor is used instead of button to mimic original HN markup */}
         <span className='whitespace-pre-wrap text-xs text-gray'>{data.user} <Link to='/item' search={{id: data.id}}>{data.time_ago}</Link> <a onClick={() => setCollapsed(!collapsed)}>{collapsed ? `[${countComments(data)} more]`: '[-]'}</a></span>
       </div>
-      {/* biome-ignore lint: we need this to preserve post formatting, because HN posts can contain markup */}
-      <div className={collapsed ? "hidden" : "post text-sm"} dangerouslySetInnerHTML={{__html: data.content }}></div>
+      {/* biome-ignore lint: we need this to preserve post formatting, because HN posts can contain markup, dompurify should be enough against XSS */}
+      <div className={collapsed ? "hidden" : "post text-sm"} dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data.content)}}></div>
       <div className={collapsed ? "hidden" : "flex flex-col gap-2 ml-7"}>
         {data.comments.map(comment => <Comment key={comment.id} data={comment} />)}
       </div>
